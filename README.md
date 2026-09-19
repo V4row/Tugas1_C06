@@ -1,8 +1,14 @@
-### Tugas1_C06
+### TUGAS 1
 
-`sysinfo`:
+[`sysinfo`](https://github.com/V4row/Tugas1_C06/blob/main/sysinfo.sh):
 ```bash
 #!/bin/bash
+
+echo "
+==================================================
+            TUGAS 1 OS - KELOMPOK C06
+==================================================
+"
 
 echo -e "Mengecek sistem... \n"
 
@@ -51,17 +57,17 @@ metrikInfo=$(echo "$usedMem $loadAvg $cores" | ./resource_check)
 memStatus=$(echo "$metrikInfo" | awk '{print $1}')
 loadStatus=$(echo "$metrikInfo" | awk '{print $2}')
 
-if echo "$memStatus" | grep "PASS"; then
+if echo "$memStatus" | grep -q "PASS"; then
     memDetail="Masih aman"
-elif echo "$memStatus" | grep "WARN"; then 
+elif echo "$memStatus" | grep -q "WARN"; then 
     memDetail="Mulai penuh"
 else
     memDetail="Kritis"
 fi
 
-if echo "$loadStatus" | grep "PASS"; then
+if echo "$loadStatus" | grep -q "PASS"; then
     memDetail="Masih aman"
-elif echo "$loadStatus" | grep "WARN"; then 
+elif echo "$loadStatus" | grep -q "WARN"; then 
     memDetail="Mulai penuh"
 else
     memDetail="Kritis"
@@ -71,15 +77,15 @@ fi
 #waktu berjalan
 uptime=$(uptime -p | sed 's/^up //g')
 
-echo -e " OS/KERNEL \t\t: $os (Kernel $kernel_ver)"
+echo -e " OS/Kernel \t\t: $os (Kernel $kernel_ver)"
 echo -e " Akun pengguna \t\t: $userCount akun"
 echo -e " Proses berjalan \t: $processCount"
 echo -e " Virtualisasi \t\t: $terdekteksiVirtual"
 
 echo -e "\nMenghitung metrik varian kelompok..."
 
-echo -e " Memory usage \t: $usedMem % []"
-echo -e " Load average \t: $loadAvg"
+echo -e " Memory usage \t: $usedMem% \t[ $memStatus ]"
+echo -e " Load average \t: $loadAvg  \t[ $loadStatus ]"
 echo -e " Core \t\t: $cores"
 
 echo -e "\nFitur tambahan:"
@@ -98,14 +104,14 @@ echo -e "
 | Users          | Regular accounts \t| PASS   | $userCount akun \t\t\t|
 | Processes      | $processesItem \t\t| $processesStatus   | $processCount proses berjalan \t\t|
 | Virtualization | $virtualitation \t\t| $virtualitationStatus   | $terdekteksiVirtual \t|
-| Memori         | $usedMem % \t\t| $memStatus   | $memDetail \t\t\t|
+| Memori         | $usedMem% \t\t| $memStatus   | $memDetail \t\t\t|
 | Load avarage   | $loadAvg \t\t| $loadStatus   | $loadDetail \t\t\t|
 +----------------+----------------------+--------+------------------------------+
 " > sysinfo_report.txt
 
 ```
 
-`resource_check`:
+[`resource_check`](https://github.com/V4row/Tugas1_C06/blob/main/resource_check.c):
 
 ```C
 #include <stdio.h>
@@ -140,3 +146,6 @@ int main() {
     return 0;
 }
 ```
+
+# Laporan
+Dapat dilihat disini ==> [**Laporan kelompok**](https://docs.google.com/document/d/1IlYTej52JhAYZh2aTkJCX-sl-_wn4tJA6DWUzRtCcAc/edit?usp=sharing) <==
