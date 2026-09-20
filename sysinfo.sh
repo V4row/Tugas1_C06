@@ -61,16 +61,22 @@ else
 fi
 
 if echo "$loadStatus" | grep -q "PASS"; then
-    memDetail="Masih aman"
+    loadDetail="Masih aman"
 elif echo "$loadStatus" | grep -q "WARN"; then 
-    memDetail="Mulai penuh"
+    loadDetail="Mulai penuh"
 else
-    memDetail="Kritis"
+    loadDetail="Kritis"
 fi
 
 
 #waktu berjalan
 uptime=$(uptime -p | sed 's/^up //g')
+
+#fitur tambahan: ip adress dan sisa storage
+ipAddr=$(hostname -I | awk '{print $1}')
+
+diskFree=$(df -h / | awk 'NR==2 {print $4 " free dari " $2}')
+
 
 echo -e " OS/Kernel \t\t: $os (Kernel $kernel_ver)"
 echo -e " Akun pengguna \t\t: $userCount akun"
@@ -87,6 +93,9 @@ echo -e "\nFitur tambahan:"
 
 echo -e " Waktu aktif\t: $uptime"
 echo -e " User aktif\t: $USER"
+echo -e " Alamat IP\t: $ipAddr"
+echo -e " Sisa Disk\t: $diskFree"
+
 
 echo -e "
 =================================================================================
@@ -96,10 +105,12 @@ echo -e "
 | Check Category | Item                 | Status | Details                      |
 +----------------+----------------------+--------+------------------------------+
 | OS             | $os \t| PASS   | $kernel_ver \t\t|
-| Users          | Regular accounts \t| PASS   | $userCount akun \t\t\t|
+| Users          | Regular accounts \t| $userStatus   | $userCount akun \t\t\t|
 | Processes      | $processesItem \t\t| $processesStatus   | $processCount proses berjalan \t\t|
 | Virtualization | $virtualitation \t\t| $virtualitationStatus   | $terdekteksiVirtual \t|
 | Memori         | $usedMem% \t\t| $memStatus   | $memDetail \t\t\t|
 | Load avarage   | $loadAvg \t\t| $loadStatus   | $loadDetail \t\t\t|
+| IP Adress	 | $ipAddr \t| INFO   | Alamat IP VM \t\t\t|
+| Storage	 | Free space \t\t| INFO   | $diskFree \t\t|
 +----------------+----------------------+--------+------------------------------+
 " > sysinfo_report.txt

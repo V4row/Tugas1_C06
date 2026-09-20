@@ -1,0 +1,17 @@
+
+=================================================================================
+                            TUGAS 1 OS - KELOMPOK C06
+=================================================================================
++----------------+----------------------+--------+------------------------------+
+| Check Category | Item                 | Status | Details                      |
++----------------+----------------------+--------+------------------------------+
+| OS             | Linux Mint 22.2 	| PASS   | 7.0.0-31-generic 		|
+| Users          | Regular accounts 	| PASS   | 1 akun 			|
+| Processes      | Running 		| PASS   | 378 proses berjalan 		|
+| Virtualization | none 		| FAIL   | Tidak terdetekksi virtual 	|
+| Memori         | 21.5426% 		| PASS   | Masih aman 			|
+| Load avarage   | 0.91 		| PASS   | Masih aman 			|
+| IP Adress	 | 192.168.0.110 	| INFO   | Alamat IP VM 			|
+| Storage	 | Free space 		| INFO   | 6,3G free dari 47G 		|
++----------------+----------------------+--------+------------------------------+
+
