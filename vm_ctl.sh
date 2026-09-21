@@ -109,7 +109,7 @@ snapshot_list() {
     fi
     done < <(VBoxManage snapshot "$nama_vm" list 2>&1)
 
-    if [ $? -eq 0 ]; then
+    if [ $? -ne 0 ]; then
 	echo "Daftar snapshot gagal dicetak. Pastikan nama VM benar."
     fi
     echo ""
