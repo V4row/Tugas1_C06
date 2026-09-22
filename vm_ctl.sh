@@ -26,7 +26,7 @@ info() {
     	vCPU=${info_arr[1]}
     	echo "vCPU dialokasikan	: $vCPU"
 
-    	state=${info_arr[2]}
+    	state="${info_arr[2]} ${info_arr[3]}"
     	echo "Status saat ini		: $state"
     fi
     echo ""
