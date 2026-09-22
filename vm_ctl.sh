@@ -15,7 +15,7 @@ info() {
     
     info_arr=( $(VBoxManage showvminfo "$nama_vm" 2>&1 | grep -E "Memory size|Number of CPUs|State" | awk -F'[:()]' '{ print $2}' | xargs))
     
-    if [ "${#args[@]}" -ne 0 ]; then
+    if [ "${#info_arr[@]}" -ne 0 ]; then
 	echo "Info VM gagal ditampilkan. Pastikan nama VM benar."
     else
 		echo "VM			: $nama_vm"
