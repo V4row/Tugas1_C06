@@ -47,7 +47,7 @@ start() {
         fi
 
     else
-        echo "ERROR: Masukkan nama VM. Contoh: $0 stop <nama_vm>"
+        echo "ERROR: Masukkan nama VM. Contoh: $0 start <nama_vm>"
         exit 1
     fi
     echo ""
