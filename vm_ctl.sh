@@ -141,23 +141,28 @@ case "$1" in
         stop $nama_vm
 	;;
     snapshot)
-	case "$2" in
-	    create)
-		args=("$@")
-		args_count="${#args[@]}"
-		nama_snapshot="${args[args_count-1]}"
-		nama_vm="${args[*]:2:args_count-3}"
-
-		snapshot_create $nama_vm $nama_snapshot
+		case "$2" in
+		    create)
+			args=("$@")
+			args_count="${#args[@]}"
+			nama_snapshot="${args[args_count-1]}"
+			nama_vm="${args[*]:2:args_count-3}"
+	
+			snapshot_create $nama_vm $nama_snapshot
+			;;
+		    list)
+			shift 2
+			nama_vm=$@
+			snapshot_list $nama_vm
+			;;
+		    *)
+			echo "Input tidak valid"
+			echo ""
+			;;
+		esac
 		;;
-	    list)
-		shift 2
-		nama_vm=$@
-		snapshot_list $nama_vm
-		;;
-	    *)
+	*)
 		echo "Input tidak valid"
 		echo ""
 		;;
-	esac
 esac
