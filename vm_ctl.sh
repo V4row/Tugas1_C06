@@ -12,13 +12,14 @@ list() {
 info() {
     print_header
     nama_vm=$@
-    echo "VM			: $nama_vm"
     
     info_arr=( $(VBoxManage showvminfo "$nama_vm" 2>&1 | grep -E "Memory size|Number of CPUs|State" | awk -F'[:()]' '{ print $2}' | xargs))
     
     if [ "${#args[@]}" -ne 0 ]; then
 	echo "Info VM gagal ditampilkan. Pastikan nama VM benar."
     else
+		echo "VM			: $nama_vm"
+		
     	ramUse=${info_arr[0]}
     	echo "RAM dialokasikan	: $ramUse"
 
