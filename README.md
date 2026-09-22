@@ -20,7 +20,7 @@ info() {
     
     info_arr=( $(VBoxManage showvminfo "$nama_vm" 2>&1 | grep -E "Memory size|Number of CPUs|State" | awk -F'[:()]' '{ print $2}' | xargs))
     
-    if [ $? -ne 0 ]; then
+    if [ "${#args[@]}" -ne 0 ]; then
 	echo "Info VM gagal ditampilkan. Pastikan nama VM benar."
     else
     	ramUse=${info_arr[0]}
@@ -113,7 +113,7 @@ snapshot_list() {
     fi
     done < <(VBoxManage snapshot "$nama_vm" list 2>&1)
 
-    if [ $? -eq 0 ]; then
+    if [ $? -ne 0 ]; then
 	echo "Daftar snapshot gagal dicetak. Pastikan nama VM benar."
     fi
     echo ""
@@ -145,25 +145,30 @@ case "$1" in
         stop $nama_vm
 	;;
     snapshot)
-	case "$2" in
-	    create)
-		args=("$@")
-		args_count="${#args[@]}"
-		nama_snapshot="${args[args_count-1]}"
-		nama_vm="${args[*]:2:args_count-3}"
-
-		snapshot_create $nama_vm $nama_snapshot
+		case "$2" in
+		    create)
+			args=("$@")
+			args_count="${#args[@]}"
+			nama_snapshot="${args[args_count-1]}"
+			nama_vm="${args[*]:2:args_count-3}"
+	
+			snapshot_create $nama_vm $nama_snapshot
+			;;
+		    list)
+			shift 2
+			nama_vm=$@
+			snapshot_list $nama_vm
+			;;
+		    *)
+			echo "Input tidak valid"
+			echo ""
+			;;
+		esac
 		;;
-	    list)
-		shift 2
-		nama_vm=$@
-		snapshot_list $nama_vm
-		;;
-	    *)
+	*)
 		echo "Input tidak valid"
 		echo ""
 		;;
-	esac
 esac
 
 ```
