@@ -7,11 +7,11 @@
 +----------------+----------------------+--------+------------------------------+
 | OS             | Linux Mint 22.2 	| PASS   | 7.0.0-31-generic 		|
 | Users          | Regular accounts 	| PASS   | 1 akun 			|
-| Processes      | Running 		| PASS   | 369 proses berjalan 		|
+| Processes      | Running 		| PASS   | 383 proses berjalan 		|
 | Virtualization | none 		| FAIL   | Tidak terdetekksi virtual 	|
-| Memori         | 18.2811% 		| PASS   | Masih aman 			|
-| Load avarage   | 1.55 		| PASS   | Masih aman 			|
-| IP Adress	 | 10.5.95.165 	| INFO   | Alamat IP VM 			|
-| Storage	 | Free space 		| INFO   | 6,4G free dari 47G 		|
+| Memori         | 20.7045% 		| PASS   | Masih aman 			|
+| Load avarage   | 0.97 		| PASS   | Masih aman 			|
+| IP Adress	 | 192.168.0.110 	| INFO   | Alamat IP VM 			|
+| Storage	 | Free space 		| INFO   | 5,3G free dari 47G 		|
 +----------------+----------------------+--------+------------------------------+
 

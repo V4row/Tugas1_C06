@@ -48,6 +48,11 @@ usedMem=$(free | awk '/Mem/ { print ($3 / $2) * 100}' | sed 's/,/./g')
 loadAvg=$(cat /proc/loadavg | awk '{print $1}')
 cores=$(nproc)
 
+
+if [ ! -f "./resource_check" ]; then
+    gcc resource_check.c -o resource_check
+fi
+
 metrikInfo=$(echo "$usedMem $loadAvg $cores" | ./resource_check)
 memStatus=$(echo "$metrikInfo" | awk '{print $1}')
 loadStatus=$(echo "$metrikInfo" | awk '{print $2}')
